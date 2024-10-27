@@ -9,20 +9,27 @@ namespace OMDbAPICaller
         {
             var httpClient = new HttpClient();
             var movieFetcher = new MovieFetcher(httpClient);
+            string exitCommand = "!exit";
 
-            // Pobieramy film po tytule
-            Console.WriteLine("Podaj tytuł filmu:");
-            string ?title = Console.ReadLine();
-
-            try
+            string? title = string.Empty;
+            do
             {
-                var movie = await movieFetcher.GetMovieByTitleAsync(title);
-                MoviePresenter.DisplayMovieDetails(movie);
+                if (!String.IsNullOrEmpty(title))
+                {
+                    try
+                    {
+                        var movie = await movieFetcher.GetMovieByTitleAsync(title);
+                        MoviePresenter.DisplayMovieDetails(movie);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Error: {ex.Message}");
+                    }
+                }
+                Console.WriteLine("Provide a movie's title:");
+                title = Console.ReadLine();
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error: {ex.Message}");
-            }
+            while (title != exitCommand);
         }
     }
 }

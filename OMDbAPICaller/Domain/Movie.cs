@@ -1,33 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OMDbAPICaller.Domain
+﻿namespace OMDbAPICaller.Domain
 {
     public class Movie
     {
-        //Dates
-        public DateTime Released { get; set; } = DateTime.MinValue;
-
-        //decimals
-        public decimal Rate { get; set; } = 0m;
-        public decimal imdbRating { get; set; } = 0m;
-        public decimal imdbVotes { get; set; } = 0m;
-        public decimal BoxOffice { get; set; } = 0m;
-        public decimal Runtime { get; set; } = 0m;  //in minutes
-        public decimal Year { get; set; } = 0m;
-
-        // strings
-        public string Title { get; set; } = string.Empty;
-        public string Language { get; set; } = string.Empty;
-        public string Description { get; set; } = string.Empty;
-        public string Plot { get; set; } = string.Empty;
-        public string Awards { get; set; } = string.Empty;
-        public string Type { get; set; } = string.Empty;
-            
-        //lists
+        public string Title { get; set; }
+        public int Year { get; set; }
+        public DateTime? Released { get; set; }
+        public double? Rate { get; set; }
+        public string? Description { get; set; }
+        public double? ImdbRating { get; set; }
+        public double? ImdbVotes { get; set; }
+        public double? BoxOffice { get; set; }
+        public int? RuntimeMinutes { get; set; }
+        public string? Language { get; set; }
+        public string? Plot { get; set; }
+        public string? Awards { get; set; }
+        public string? Type { get; set; }
         public List<string> Actors { get; set; } = new List<string>();
         public List<string> Directors { get; set; } = new List<string>();
         public List<string> Countries { get; set; } = new List<string>();

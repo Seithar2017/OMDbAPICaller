@@ -2,11 +2,6 @@
 using OMDbAPICaller.Application;
 using OMDbAPICaller.Domain;
 using OMDbAPICaller.Infrastructure.DTOs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OMDbAPICaller.Infrastructure
 {
@@ -33,10 +28,12 @@ namespace OMDbAPICaller.Infrastructure
                 {
                     throw new Exception("Deserialization failed, movie data is null.");
                 }
-
+                else if(omdbMovieDto.Response == "False")
+                {
+                    throw new Exception(omdbMovieDto.Error);
+                }
                 var movieMapper = new MovieMapper();
                 var movie = movieMapper.MapFromDTO(omdbMovieDto);
-
                 return movie;
             }
             else
